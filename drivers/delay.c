@@ -8,9 +8,9 @@ static uint32_t msTicks = 0;
 
 void delay_init(void)
 {
-    // 1us时钟数
+    /* 1 us in ticks */
     usTicks = SystemCoreClock / 1000000;
-    // 1ms时钟数
+    /* 1 ms in ticks */
     msTicks = SystemCoreClock / 1000;
 }
 
