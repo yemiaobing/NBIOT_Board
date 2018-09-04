@@ -61,23 +61,27 @@ typedef enum
 ******************************************************************************/
 typedef struct
 {
-	USART_TypeDef *uart;		/* STM32内部串口设备指针 */
-	uint8_t *p_txbuf;			/* 发送缓冲区 */
-	uint8_t *p_rxbuf;			/* 接收缓冲区 */
-	uint16_t txbuf_size;		/* 发送缓冲区大小 */
-	uint16_t rxbuf_size;		/* 接收缓冲区大小 */
-	__IO uint16_t tx_write;			/* 发送缓冲区写指针 */
-	__IO uint16_t tx_read;			/* 发送缓冲区读指针 */
-	__IO uint16_t tx_count;			/* 等待发送的数据个数 */
+	UART_HandleTypeDef uart_handle;		/* STM32 HAL library uart handle  */
+    uint8_t *p_hal_uart_txbuf;          /* STM32 HAL library uart recv buf */
+    uint16_t p_hal_uart_txbuf_size;
+	uint8_t *p_txbuf;			/* send buffer pointer */
+	uint8_t *p_rxbuf;			/* receive buffer pointer */
+	uint16_t txbuf_size;		/* send buffer size */
+	uint16_t rxbuf_size;		/* receive buffer size */
+	__IO uint16_t tx_write;			/* write pointer of send buffer */
+	__IO uint16_t tx_read;			/* read pointer of send buffer */
+	__IO uint16_t tx_count;			/* count of send buffer */
 
-	__IO uint16_t rx_write;			/* 接收缓冲区写指针 */
-	__IO uint16_t rx_read;			/* 接收缓冲区读指针 */
-	__IO uint16_t rx_count;			/* 还未读取的新数据个数 */
+	__IO uint16_t rx_write;			/* write pointer of receive buffer */
+	__IO uint16_t rx_read;			/* write pointer of receive buffer */
+	__IO uint16_t rx_count;			/* write pointer of receive buffer */
 }UART_T;
 
 /******************************************************************************
 * Extern Functions
 ******************************************************************************/
 extern void uart_init(void);
-
+extern void com_send_buf(COM_PORT_ENUM com_port, uint8_t *buf, uint16_t len);
+extern void com_send_char(COM_PORT_ENUM com_port, uint8_t write_byte);
+extern uint8_t com_get_char(COM_PORT_ENUM com_port, uint8_t *read_byte);
 #endif

@@ -543,6 +543,11 @@
               <FileType>1</FileType>
               <FilePath>..\drivers\led.c</FilePath>
             </File>
+            <File>
+              <FileName>usart.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\drivers\usart.c</FilePath>
+            </File>
           </Files>
         </Group>
       </Groups>
